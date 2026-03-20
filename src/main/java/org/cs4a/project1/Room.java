@@ -24,10 +24,22 @@ public class Room {
     public Vector<Object> getDeviceList() {
         return deviceList;
     }
-    public boolean addDeviceToRoom(Device newDevice) {
-        return deviceList.add(newDevice);
+
+// DeviceInactiveException if not active
+public boolean addDeviceToRoom(Device newDevice) throws DeviceInactiveException {
+    if (!newDevice.isActive()) {
+        throw new DeviceInactiveException(newDevice.getName());
     }
-    public Object removeDeviceFromRoom(final int deviceID) {
-        return deviceList.remove(deviceID);
+    return deviceList.add(newDevice);
+}
+
+// RoomNotFoundException if device not in room
+public Device removeDeviceFromRoom(final String deviceName) throws RoomNotFoundException {
+    for (int i = 0; i < deviceList.size(); i++) {
+        if (Objects.equals(deviceList.get(i).getName(), deviceName)) {
+            return deviceList.remove(i);
+        }
     }
+    throw new RoomNotFoundException("Device \"" + deviceName + "\" not found in room \"" + name + "\"");
+}
 }
