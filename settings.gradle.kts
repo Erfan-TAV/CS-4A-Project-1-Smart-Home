@@ -1,1 +1,1 @@
-rootProject.name = "testing"
+rootProject.name = "CS 4A Project 1 Smart Home"
