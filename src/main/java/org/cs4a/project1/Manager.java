@@ -10,41 +10,42 @@ public class Manager {
         return roomList;
     }
 
-    public Room getRoom(final int roomID) {
+    public Room getRoom(final int roomID) throws RoomNotFoundException {
         for (Room room : roomList) {
             if (room.getRoomID() == roomID) {
                 return room;
             }
         }
-        return null;
+        throw new RoomNotFoundException(roomID);
     }
-    public Room getRoom(final String roomName) {
+    public Room getRoom(final String roomName) throws RoomNotFoundException {
         for (Room room : roomList) {
             if (Objects.equals(room.getName(), roomName)) {
                 return room;
             }
         }
-        return null;
+        throw new RoomNotFoundException(roomName);
     }
+
 
     public boolean addRoom(Room newRoom) {
         return roomList.add(newRoom);
     }
 
-    public Room removeRoom(final int roomID) {
+    public Room removeRoom(final int roomID) throws RoomNotFoundException {
         for (int i = 0; i < roomList.size(); i++) {
             if (roomList.get(i).getRoomID() == roomID) {
                 return roomList.remove(i);
             }
         }
-        return null;
+        throw new RoomNotFoundException(roomID);
     }
-    public Room removeRoom(final String roomName) {
+
+    public Room removeRoom(final String roomName) throws RoomNotFoundException {
         for (int i = 0; i < roomList.size(); i++) {
             if (Objects.equals(roomList.get(i).getName(), roomName)) {
                 return roomList.remove(i);
             }
         }
-        return null;
-    }
-}
+        throw new RoomNotFoundException(roomName);
+    }}
