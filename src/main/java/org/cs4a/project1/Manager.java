@@ -27,7 +27,6 @@ public class Manager {
         throw new RoomNotFoundException(roomName);
     }
 
-
     public boolean addRoom(Room newRoom) {
         return roomList.add(newRoom);
     }
@@ -40,7 +39,6 @@ public class Manager {
         }
         throw new RoomNotFoundException(roomID);
     }
-
     public Room removeRoom(final String roomName) throws RoomNotFoundException {
         for (int i = 0; i < roomList.size(); i++) {
             if (Objects.equals(roomList.get(i).getName(), roomName)) {
@@ -48,4 +46,5 @@ public class Manager {
             }
         }
         throw new RoomNotFoundException(roomName);
-    }}
+    }
+}

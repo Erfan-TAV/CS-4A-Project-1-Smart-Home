@@ -1,11 +1,12 @@
 package org.cs4a.project1;
 
+import java.util.Objects;
 import java.util.Vector;
 
 public class Room {
     private String name;
     private int roomID;
-    private Vector<Object> deviceList;
+    private Vector<Device> deviceList;
 
     public String getName() {
         return name;
@@ -21,7 +22,7 @@ public class Room {
         roomID = newRoomID;
     }
 
-    public Vector<Object> getDeviceList() {
+    public Vector<Device> getDeviceList() {
         return deviceList;
     }
 
