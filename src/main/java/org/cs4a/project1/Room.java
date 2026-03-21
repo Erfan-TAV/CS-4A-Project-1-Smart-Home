@@ -1,5 +1,8 @@
 package org.cs4a.project1;
 
+import org.cs4a.project1.exceptions.DeviceNotFoundException;
+import org.cs4a.project1.exceptions.RoomNotFoundException;
+
 import java.util.Objects;
 import java.util.Vector;
 
@@ -26,21 +29,21 @@ public class Room {
         return deviceList;
     }
 
-// DeviceInactiveException if not active
-public boolean addDeviceToRoom(Device newDevice) throws DeviceInactiveException {
-    if (!newDevice.isActive()) {
-        throw new DeviceInactiveException(newDevice.getName());
-    }
-    return deviceList.add(newDevice);
-}
-
-// RoomNotFoundException if device not in room
-public Device removeDeviceFromRoom(final String deviceName) throws RoomNotFoundException {
-    for (int i = 0; i < deviceList.size(); i++) {
-        if (Objects.equals(deviceList.get(i).getName(), deviceName)) {
-            return deviceList.remove(i);
+    // DeviceInactiveException if not active
+    public boolean addDeviceToRoom(Device newDevice) throws RoomNotFoundException {
+        if (!newDevice.isActive()) {
+            throw new RoomNotFoundException(name);
         }
+        return deviceList.add(newDevice);
     }
-    throw new RoomNotFoundException("Device \"" + deviceName + "\" not found in room \"" + name + "\"");
-}
+
+    // RoomNotFoundException if device not in room
+    public Device removeDeviceFromRoom(final String deviceName) throws DeviceNotFoundException {
+        for (int i = 0; i < deviceList.size(); i++) {
+            if (Objects.equals(deviceList.get(i).getName(), deviceName)) {
+                return deviceList.remove(i);
+            }
+        }
+        throw new DeviceNotFoundException(deviceName);
+    }
 }

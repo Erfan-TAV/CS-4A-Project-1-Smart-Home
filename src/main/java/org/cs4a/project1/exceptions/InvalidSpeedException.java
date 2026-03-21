@@ -1,4 +1,4 @@
-package org.cs4a.project1;
+package org.cs4a.project1.exceptions;
 
 public class InvalidSpeedException extends Exception {
 

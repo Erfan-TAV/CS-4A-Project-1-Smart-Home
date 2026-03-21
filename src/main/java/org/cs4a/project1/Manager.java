@@ -1,5 +1,7 @@
 package org.cs4a.project1;
 
+import org.cs4a.project1.exceptions.RoomNotFoundException;
+
 import java.util.Objects;
 import java.util.Vector;
 
