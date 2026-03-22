@@ -31,7 +31,7 @@ public class Room {
 
     // DeviceInactiveException if not active
     public boolean addDeviceToRoom(Device newDevice) throws RoomNotFoundException {
-        if (!newDevice.isActive()) {
+        if (!newDevice.getStatus()) {
             throw new RoomNotFoundException(name);
         }
         return deviceList.add(newDevice);

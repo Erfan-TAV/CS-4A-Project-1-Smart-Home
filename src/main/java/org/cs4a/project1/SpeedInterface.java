@@ -1,11 +1,17 @@
 package org.cs4a.project1;
 
+import org.cs4a.project1.exceptions.DeviceInactiveException;
+import org.cs4a.project1.exceptions.InvalidSpeedException;
 public interface SpeedInterface {
 
-    void setSpeed(double speed);
-    double getSpeed();
+    void setSpeed(int speed)throws InvalidSpeedException,DeviceInactiveException;
+    int getSpeed() throws DeviceInactiveException;
 
     default String getSpeedAsString() {
-        return "Speed: " + getSpeed() + "%";
+        try{
+            return "Speed: " + getSpeed() + "%";
+        } catch(DeviceInactiveException ex) {
+            return "DeviceInactiveException!";
+        }
     }
 }

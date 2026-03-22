@@ -1,20 +1,35 @@
 package org.cs4a.project1;
 
+import org.cs4a.project1.exceptions.DeviceInactiveException;
+import org.cs4a.project1.exceptions.InvalidTemperatureException;
+
 public interface TempInterface {
 
-    void setTemp(double temp);
-    double getTemp();
+    void setTemp(double temp) throws InvalidTemperatureException, DeviceInactiveException;
+    double getTemp() throws DeviceInactiveException;
 
     default double toCelsius() {
-        return (getTemp() - 32) * 5.0 / 9.0;
+        try{
+            return (getTemp() - 32) * 5.0 / 9.0;
+        } catch(DeviceInactiveException ex){
+            return -1;
+        }
     }
 
     default double toFahrenheit() {
-        return (getTemp() * 9.0 / 5.0) + 32;
+        try{
+            return (getTemp() * 9.0 / 5.0) + 32;
+        } catch(DeviceInactiveException ex){
+            return -1;
+        }
     }
 
     default String getTempAsString() {
-        return "Temperature: " + getTemp() + "F" +
+        try{
+            return "Temperature: " + getTemp() + "F" +
                " (" + String.format("%.1f", toCelsius()) + "C)";
+        } catch(DeviceInactiveException ex){
+            return "DeviceInactiveException!";
+        }
     }
 }

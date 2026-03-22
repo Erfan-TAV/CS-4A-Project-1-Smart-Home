@@ -1,5 +1,9 @@
+//i was apple to get it to run when i added the application parts.
+//although i use linux so idk if its different for you guys.
+//id comment out the application parts if ur on windows and it doesnt work.
 plugins {
     id("java")
+    id("application")
 }
 
 group = "org.cs4a.project1"
@@ -17,4 +21,8 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass.set("org.cs4a.project1.Main") // Correct property for Kotlin DSL
 }
