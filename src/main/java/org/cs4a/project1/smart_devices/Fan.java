@@ -2,6 +2,7 @@ package org.cs4a.project1.smart_devices;
 
 import org.cs4a.project1.exceptions.DeviceInactiveException;
 import org.cs4a.project1.exceptions.InvalidSpeedException;
+import org.cs4a.project1.interfaces.SpeedInterface;
 
 class Fan extends Device implements SpeedInterface {
     private int speed;
