@@ -1,4 +1,4 @@
-package org.cs4a.project1.interfaces;
+package org.cs4a.project1;
 
 import org.cs4a.project1.exceptions.DeviceInactiveException;
 import org.cs4a.project1.exceptions.InvalidSpeedException;
