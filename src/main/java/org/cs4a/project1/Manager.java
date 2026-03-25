@@ -8,6 +8,10 @@ import java.util.Vector;
 public class Manager {
     private Vector<Room> roomList;
 
+    public Manager() {
+        roomList = new Vector<Room>();
+    }
+
     public Vector<Room> getRoomList() {
         return roomList;
     }
