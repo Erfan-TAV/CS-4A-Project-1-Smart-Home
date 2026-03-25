@@ -12,6 +12,18 @@ public class Room {
     private int roomID;
     private Vector<Device> deviceList;
 
+    public Room() {
+        this.name = "unnamed";
+        this.roomID = 0;
+        this.deviceList = new Vector<>();
+    }
+
+    public Room(String name) {
+        this.name = name;
+        this.roomID = 0;
+        this.deviceList = new Vector<>();
+    }
+
     public String getName() {
         return name;
     }
