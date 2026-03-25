@@ -10,6 +10,7 @@ public class Main {
 
         roomManager.addRoom(new Room("bathroom"));
 
+        System.out.print("Room name[should be bathroom]: ");
         try {
             System.out.print(roomManager.getRoom("bathroom").getName());
         } catch (RoomNotFoundException e) {
