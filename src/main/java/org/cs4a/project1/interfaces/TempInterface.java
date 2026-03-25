@@ -1,4 +1,4 @@
-package org.cs4a.project1;
+package org.cs4a.project1.interfaces;
 
 import org.cs4a.project1.exceptions.DeviceInactiveException;
 import org.cs4a.project1.exceptions.InvalidTemperatureException;

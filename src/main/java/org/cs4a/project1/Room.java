@@ -2,6 +2,7 @@ package org.cs4a.project1;
 
 import org.cs4a.project1.exceptions.DeviceNotFoundException;
 import org.cs4a.project1.exceptions.RoomNotFoundException;
+import org.cs4a.project1.smart_devices.Device;
 
 import java.util.Objects;
 import java.util.Vector;
