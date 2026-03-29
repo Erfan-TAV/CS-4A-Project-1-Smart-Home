@@ -2,7 +2,7 @@ package org.cs4a.project1.smart_devices;
 
 import org.cs4a.project1.exceptions.DeviceInactiveException;
 
-class SmartLight extends Device {
+public class SmartLight extends Device {
     private boolean light;
     private double intensity;
     private int color;
