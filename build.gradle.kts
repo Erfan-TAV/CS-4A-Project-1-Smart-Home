@@ -26,3 +26,8 @@ tasks.test {
 application {
     mainClass.set("org.cs4a.project1.Main") // Correct property for Kotlin DSL
 }
+
+//added for terminal and or linux reasons
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}
