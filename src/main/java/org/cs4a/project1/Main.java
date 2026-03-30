@@ -63,9 +63,22 @@ public class Main {
                         break;
                     case 3: //manage devs by room
                         System.out.println("Entering Device Management...");
-                        clearScreen(); //idk if this is actually doingn anything, hard to tell in my IDE
+                        clearScreen(); //idk if this is actually doingn anything, hard to tell in my IDE haha
                         roomManager.printAllRooms(roomManager);
-                        manageRoomDevices(roomManager, input);
+                        System.out.println("\n-----Device Management Menu -----\n");
+                        System.out.println("1. Device Settings");
+                        System.out.println("2. Manage Devices");
+                        System.out.println("3. Return to Main Menu");
+                        System.out.println("Selection: ");
+                        int manageChoice = getIntInput(input);
+                        if (manageChoice == 1) {
+                            //deviceSettings(roomManager, input);  menu
+                        } else if (manageChoice ==2){
+                            manageRoomDevices(roomManager, input);
+                        } else if (manageChoice ==3){
+                            System.out.println("Returning to Main Menu");
+                            break;
+                        }
                         break;
                     case 4: // list all the stuff as liong as it's not empty
                         if (roomManager.getRoomList().isEmpty()) {
@@ -146,6 +159,10 @@ public class Main {
         }
     }
 
+    // function for managing the submenu for changing device settings
+    private static void deviceSettings(Manager manager, Scanner input){
+        // add device settings stuff
+    }
     //UTILITIES
     //helper function to manage possible input prob
     private static int getIntInput(Scanner input) {
