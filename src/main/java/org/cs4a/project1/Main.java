@@ -2,6 +2,8 @@ package org.cs4a.project1;
 
 //import org.cs4a.project1.exceptions.RoomNotFoundException;
 import java.util.Scanner;
+import java.util.Vector;
+
 import org.cs4a.project1.exceptions.*;
 import org.cs4a.project1.smart_devices.*;
 
@@ -53,7 +55,8 @@ public class Main {
                         pause(input);
                         break;
                     case 2: //Remove a room
-                        System.out.print("Enter name of room to remove: ");
+                        roomManager.printAllRooms(roomManager);
+                        System.out.print("\nEnter name of room to remove: ");
                         try {
                             roomManager.removeRoom(input.nextLine());
                             System.out.println("Room removed.");
@@ -63,17 +66,27 @@ public class Main {
                         break;
                     case 3: //manage devs by room
                         System.out.println("Entering Device Management...");
-                        clearScreen(); //idk if this is actually doingn anything, hard to tell in my IDE haha
-                        roomManager.printAllRooms(roomManager);
-                        System.out.println("\n-----Device Management Menu -----\n");
+                        clearScreen(); //this doesn't really work on my IDE but should with like a terminal or smthn
+
+                        System.out.println("\n-----Device Management Menu-----");
                         System.out.println("1. Device Settings");
                         System.out.println("2. Manage Devices");
                         System.out.println("3. Return to Main Menu");
                         System.out.println("Selection: ");
                         int manageChoice = getIntInput(input);
-                        if (manageChoice == 1) {
-                            //deviceSettings(roomManager, input);  menu
+                        if (manageChoice == 1) { // had to change this slightly so it gets a room first and then goes to manage
+                            roomManager.printAllRooms(roomManager);
+                            System.out.print("Enter Room Name to Edit: ");
+                            String rName = input.nextLine();
+                            try {
+                                Room selectedRoom = roomManager.getRoom(rName);
+                                deviceSettings(selectedRoom, input);
+                            } catch (RoomNotFoundException e) {
+                                System.out.println("Error: " + e.getMessage());
+                                pause(input);
+                            }
                         } else if (manageChoice ==2){
+                            roomManager.printAllRooms(roomManager);
                             manageRoomDevices(roomManager, input);
                         } else if (manageChoice ==3){
                             System.out.println("Returning to Main Menu");
@@ -133,7 +146,7 @@ public class Main {
                 } else if (deviceChoice ==3){
                     System.out.print("Enter Motion Sensor Name: ");
                     String name = input.nextLine();
-                    selectedRoom.addDeviceToRoom(new MotionSensor(name, false)); //default to not sensing anything
+                    selectedRoom.addDeviceToRoom(new MotionSensor(name, false)); //default to off
                 } else if (deviceChoice ==4){
                     System.out.print("Enter Thermostat Name: ");
                     String name = input.nextLine();
@@ -160,9 +173,33 @@ public class Main {
     }
 
     // function for managing the submenu for changing device settings
-    private static void deviceSettings(Manager manager, Scanner input){
-        // add device settings stuff
+    private static void deviceSettings(Room room, Scanner input){
+        Vector<Device> devices = room.getDeviceList();
+        if(devices.isEmpty()){
+            System.out.println("No devices to edit.");
+            return;
+        }
+        // list devices
+        System.out.println("\nSelect a device to edit:");
+        for(int i =0; i < devices.size();i++ ){
+            System.out.println((i+1) + ". " + devices.get(i).getName());
+        }
+        int index = getIntInput(input) - 1;
+        if (index < 0 || index >= devices.size()){
+            System.out.println("Invalid Selection");
+            return;
+        }
+        Device d = devices.get(index);
+        // actual device submenu
+        System.out.println("\nSettings for " + d.getName());
+        System.out.println("1. Power (Currently " + (d.getStatus() ? "ON" : "OFF") + ")");
+
+        // add the other things from interfaces for device specifics
+
+
+
     }
+
     //UTILITIES
     //helper function to manage possible input prob
     private static int getIntInput(Scanner input) {
