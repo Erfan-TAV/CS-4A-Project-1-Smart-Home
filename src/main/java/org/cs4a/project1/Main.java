@@ -152,11 +152,11 @@ public class Main {
                 } else if (deviceChoice ==3){
                     System.out.print("Enter Motion Sensor Name: ");
                     String name = input.nextLine();
-                    selectedRoom.addDeviceToRoom(new MotionSensor(name, false)); //default to off
+                    selectedRoom.addDeviceToRoom(new MotionSensor(name, true)); //default to off
                 } else if (deviceChoice ==4){
                     System.out.print("Enter Thermostat Name: ");
                     String name = input.nextLine();
-                    selectedRoom.addDeviceToRoom(new Thermostat(false, name, 10, 65)); // i guess set to off default
+                    selectedRoom.addDeviceToRoom(new Thermostat(true, name, 10, 65)); // i guess set to off default
 
                 }else if (deviceChoice ==5){
                     System.out.print("Enter Door Lock Name: ");
