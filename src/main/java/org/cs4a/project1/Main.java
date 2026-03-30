@@ -126,6 +126,8 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+    //UTILITIES
     //helper function to manage possible input prob
     private static int getIntInput(Scanner input) {
         if (input.hasNextInt()) {
@@ -135,5 +137,22 @@ public class Main {
         }
         input.nextLine();
         return -1;
+    }
+    public static void clearScreen(){
+        System.out.print("\033[H\033[2J"); //use ansi excape code for terminal clear
+    }
+
+    public static void pause(Scanner input){
+        System.out.println("\n(Press Enter to Continue...)");
+        input.nextLine();
+    }
+    private static void displayAll(Manager m){
+        System.out.println("\n ***** ALL ROOMS & DEVICES *****");
+        for (Room r: m.getRoomList()){
+            System.out.println("Room: " + r.getName());
+            for (Device d : r.getDeviceList()){
+                System.out.println("  > " + d.getName() + " | Power Status: " + (d.getStatus() ? "ON" : "OFF"));
+            }
+        }
     }
 }
