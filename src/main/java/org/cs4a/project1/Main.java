@@ -72,7 +72,7 @@ public class Main {
 
                         System.out.println("\n-----Device Management Menu-----");
                         System.out.println("1. Device Settings");
-                        System.out.println("2. Manage Devices");
+                        System.out.println("2. Add/Remove Devices");
                         System.out.println("3. Return to Main Menu");
                         System.out.println("Selection: ");
                         int manageChoice = getIntInput(input);
@@ -104,6 +104,7 @@ public class Main {
                         } else {
                             displayAll(roomManager);
                         }
+                        pause(input);
                         break;
                     case 5:// exit the program
                         System.out.println("Exiting... Goodbye!");
