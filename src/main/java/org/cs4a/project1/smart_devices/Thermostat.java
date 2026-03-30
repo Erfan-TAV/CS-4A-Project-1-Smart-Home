@@ -4,7 +4,7 @@ import org.cs4a.project1.exceptions.DeviceInactiveException;
 import org.cs4a.project1.exceptions.InvalidTemperatureException;
 import org.cs4a.project1.interfaces.TempInterface;
 
-class Thermostat extends Device implements TempInterface {
+public class Thermostat extends Device implements TempInterface {
     private double temp;
     private double humidity;
 

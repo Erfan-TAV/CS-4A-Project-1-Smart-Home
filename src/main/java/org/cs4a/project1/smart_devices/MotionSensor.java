@@ -4,7 +4,7 @@ import org.cs4a.project1.exceptions.DeviceInactiveException;
 
 import java.util.Random;
 
-class MotionSensor extends Device {
+public class MotionSensor extends Device {
     private boolean motion;
 
     public MotionSensor() {

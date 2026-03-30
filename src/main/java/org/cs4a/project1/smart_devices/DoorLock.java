@@ -2,7 +2,7 @@ package org.cs4a.project1.smart_devices;
 
 import org.cs4a.project1.exceptions.DeviceInactiveException;
 
-class DoorLock extends Device {
+public class DoorLock extends Device {
     private boolean open;
 
     public DoorLock() {

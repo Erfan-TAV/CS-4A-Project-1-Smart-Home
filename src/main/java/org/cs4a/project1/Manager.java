@@ -1,6 +1,7 @@
 package org.cs4a.project1;
 
 import org.cs4a.project1.exceptions.RoomNotFoundException;
+import org.cs4a.project1.smart_devices.Device;
 
 import java.util.Objects;
 import java.util.Vector;
@@ -14,6 +15,15 @@ public class Manager {
 
     public Vector<Room> getRoomList() {
         return roomList;
+    }
+
+    //added a print all rooms method - sophie
+    public void printAllRooms(Manager m){
+        System.out.print(" ***** ALL ROOMS *****");
+        for (Room r: m.getRoomList()){
+            System.out.println("\n" + r.getName());
+        }
+
     }
 
     public Room getRoom(final int roomID) throws RoomNotFoundException {
