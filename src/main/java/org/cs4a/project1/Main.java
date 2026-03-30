@@ -195,8 +195,33 @@ public class Main {
         System.out.println("1. Power (Currently " + (d.getStatus() ? "ON" : "OFF") + ")");
 
         // add the other things from interfaces for device specifics
+        // check for speed interface
+        if (d instanceof org.cs4a.project1.interfaces.SpeedInterface) {
+            System.out.println("2. Change Speed");
+        }
+        // check for temp interface
+        else if (d instanceof org.cs4a.project1.interfaces.TempInterface) {
+            System.out.println("2. Change Temperature");
+        }
 
-
+        int choice = getIntInput(input);
+        try {
+            if (choice == 1) {
+                d.setStatus(!d.getStatus());
+                System.out.println("Powered " + (d.getStatus() ? "ON" : "OFF"));
+            } else if (choice == 2) {
+                if (d instanceof org.cs4a.project1.interfaces.SpeedInterface) {
+                    System.out.print("Enter new speed: ");
+                    ((org.cs4a.project1.interfaces.SpeedInterface) d).setSpeed(getIntInput(input));
+                } else if (d instanceof org.cs4a.project1.interfaces.TempInterface) {
+                    System.out.print("Enter new temp: ");
+                    ((org.cs4a.project1.interfaces.TempInterface) d).setTemp(Double.parseDouble(input.nextLine()));
+                }
+            }
+        } catch (DeviceInactiveException | InvalidSpeedException | InvalidTemperatureException e) {
+            System.out.println("ACTION FAILED: " + e.getMessage());
+        }
+        pause(input);
 
     }
 
