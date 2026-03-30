@@ -36,9 +36,15 @@ public class Manager {
     }
     public Room getRoom(final String roomName) throws RoomNotFoundException {
         for (Room room : roomList) {
-            if (Objects.equals(room.getName(), roomName)) {
+            //changed this slightly bc i was having probs with case sensitivity when
+            // finding a room
+            if(room.getName().equalsIgnoreCase(roomName)){
                 return room;
             }
+
+           // if (Objects.equals(room.getName(), roomName)) {
+           //     return room;
+            //}
         }
         throw new RoomNotFoundException(roomName);
     }

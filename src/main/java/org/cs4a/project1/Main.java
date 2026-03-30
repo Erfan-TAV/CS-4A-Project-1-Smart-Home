@@ -36,7 +36,7 @@ public class Main {
                     System.out.println("SMART HOME CONTROLS");
 
             // main menu
-                System.out.println("\n----- Main Menu -----");
+                System.out.println("----- Main Menu -----");
                 System.out.println("What would you like to do? ");
                 System.out.println("1. Add a Room ");
                 System.out.println("2. Remove a Room ");
@@ -56,6 +56,7 @@ public class Main {
                         break;
                     case 2: //Remove a room
                         roomManager.printAllRooms(roomManager);
+                        input.nextLine(); // extra clear
                         System.out.print("\nEnter name of room to remove: ");
                         try {
                             roomManager.removeRoom(input.nextLine());
@@ -76,6 +77,7 @@ public class Main {
                         int manageChoice = getIntInput(input);
                         if (manageChoice == 1) { // had to change this slightly so it gets a room first and then goes to manage
                             roomManager.printAllRooms(roomManager);
+                            input.nextLine();        // extra clear buffer bc the room name exception kept going off in dev mgmt
                             System.out.print("Enter Room Name to Edit: ");
                             String rName = input.nextLine();
                             try {
@@ -86,6 +88,8 @@ public class Main {
                                 pause(input);
                             }
                         } else if (manageChoice ==2){
+                            System.out.println("(Press Enter to Continue...)");
+                            input.nextLine();
                             roomManager.printAllRooms(roomManager);
                             manageRoomDevices(roomManager, input);
                         } else if (manageChoice ==3){
@@ -228,13 +232,12 @@ public class Main {
     //UTILITIES
     //helper function to manage possible input prob
     private static int getIntInput(Scanner input) {
-        if (input.hasNextInt()) {
-            int value = input.nextInt();
-            input.nextLine();
+        try { // updated now so it won't be a problem with adding extra buffers and stuff everywhere
+            int value = Integer.parseInt(input.nextLine());
             return value;
+        } catch (NumberFormatException e) {
+            return -1;
         }
-        input.nextLine();
-        return -1;
     }
     // i used same thing that barnett taught us to do for serendipity lol
     public static void clearScreen(){
