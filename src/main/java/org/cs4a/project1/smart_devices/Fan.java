@@ -38,10 +38,11 @@ public class Fan extends Device implements SpeedInterface {
     @Override
     public void setSpeed(int speed) throws InvalidSpeedException, DeviceInactiveException {
         if (getStatus()) {
-            if (speed > 100 || speed < 0) {
-                this.speed = speed;
-            } else {
+            if (speed > 100 || speed < 0) { //i inverted this cuz the logic was backwards lol - sophie
                 throw new InvalidSpeedException(speed);
+
+            } else {
+                this.speed = speed;
             }
         } else {
             throw new DeviceInactiveException("Fan");

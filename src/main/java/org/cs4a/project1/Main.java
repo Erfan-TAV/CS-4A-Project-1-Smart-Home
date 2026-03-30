@@ -56,7 +56,8 @@ public class Main {
                         break;
                     case 2: //Remove a room
                         roomManager.printAllRooms(roomManager);
-                        input.nextLine(); // extra clear
+                        System.out.println("(Press Enter to Continue...)");
+                       // input.nextLine(); // extra clear
                         System.out.print("\nEnter name of room to remove: ");
                         try {
                             roomManager.removeRoom(input.nextLine());
@@ -77,13 +78,13 @@ public class Main {
                         int manageChoice = getIntInput(input);
                         if (manageChoice == 1) { // had to change this slightly so it gets a room first and then goes to manage
                             roomManager.printAllRooms(roomManager);
-                            input.nextLine();        // extra clear buffer bc the room name exception kept going off in dev mgmt
+                           // input.nextLine();        // extra clear buffer bc the room name exception kept going off in dev mgmt
                             System.out.print("Enter Room Name to Edit: ");
                             String rName = input.nextLine();
                             try {
                                 Room selectedRoom = roomManager.getRoom(rName);
                                 deviceSettings(selectedRoom, input);
-                            } catch (RoomNotFoundException e) {
+                            } catch (RoomNotFoundException | DeviceInactiveException e) {
                                 System.out.println("Error: " + e.getMessage());
                                 pause(input);
                             }
@@ -177,7 +178,7 @@ public class Main {
     }
 
     // function for managing the submenu for changing device settings
-    private static void deviceSettings(Room room, Scanner input){
+    private static void deviceSettings(Room room, Scanner input) throws DeviceInactiveException {
         Vector<Device> devices = room.getDeviceList();
         if(devices.isEmpty()){
             System.out.println("No devices to edit.");
@@ -198,15 +199,20 @@ public class Main {
         System.out.println("\nSettings for " + d.getName());
         System.out.println("1. Power (Currently " + (d.getStatus() ? "ON" : "OFF") + ")");
 
+
         // add the other things from interfaces for device specifics
         // check for speed interface
+        // allows fro the current stats to be listed
         if (d instanceof org.cs4a.project1.interfaces.SpeedInterface) {
-            System.out.println("2. Change Speed");
+            int currentSpeed = ((org.cs4a.project1.interfaces.SpeedInterface) d).getSpeed();
+            System.out.println("2. Change Speed (Currently: " + currentSpeed + "%)");
         }
-        // check for temp interface
+
         else if (d instanceof org.cs4a.project1.interfaces.TempInterface) {
-            System.out.println("2. Change Temperature");
+            double currentTemp = ((org.cs4a.project1.interfaces.TempInterface) d).getTemp();
+            System.out.println("2. Change Temperature (Currently: " + currentTemp + "°)");
         }
+        System.out.println("Selection: ");
 
         int choice = getIntInput(input);
         try {
@@ -245,7 +251,9 @@ public class Main {
     // just a screen pause basically
     public static void pause(Scanner input){
         System.out.println("\n(Press Enter to Continue...)");
-        input.nextLine();
+        if(input.hasNextLine()){
+            input.nextLine();
+        }
     }
     //displays both rooms and devices
     private static void displayAll(Manager m){
