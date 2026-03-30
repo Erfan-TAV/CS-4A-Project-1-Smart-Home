@@ -233,8 +233,7 @@ public class Main {
     //helper function to manage possible input prob
     private static int getIntInput(Scanner input) {
         try { // updated now so it won't be a problem with adding extra buffers and stuff everywhere
-            int value = Integer.parseInt(input.nextLine());
-            return value;
+            return Integer.parseInt(input.nextLine()); // fixed that variable redundancy
         } catch (NumberFormatException e) {
             return -1;
         }
