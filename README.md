@@ -1,6 +1,1 @@
-Assignments:
-Aiden A: device and sub class
-Erfan T: Manager Class
-Aidan N: Exceptions
-Sami K: Interfaces
-Sophia : main/ui
+There is one abstract device class with 5 types of devices that inherit from it (DoorLock, Fan, MotionSensor, SmartLight and Thermostat). There is also the room class and Manager class. Rooms contain different devices. The manager class contains a list of rooms. The room class allows you to remove or add devices while the manager class allows you to remove or add rooms. 
